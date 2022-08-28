@@ -58,6 +58,7 @@ public class Historial2 extends javax.swing.JFrame {
         ExportarBut.setBorder(javax.swing.BorderFactory.createEmptyBorder(10, 10, 10, 10));
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setExtendedState(MAXIMIZED_BOTH);
 
         jPanel1.setBackground(new java.awt.Color(123, 140, 220));
 
