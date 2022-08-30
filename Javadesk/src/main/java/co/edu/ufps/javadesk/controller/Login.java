@@ -12,15 +12,8 @@ import java.util.*;
 import org.json.JSONObject;
 import sun.net.www.http.HttpClient;
 
-public class ConsumirApi {
+public class Login {
 
-    /*  AGREGAR DEPENDENCIA AL pom.xml 
-        <dependency>
-            <groupId>com.fasterxml.jackson.core</groupId>
-            <artifactId>jackson-databind</artifactId>
-            <version>2.13.3</version>
-        </dependency>
-     */
     /**
      * Porgramar evento con el button para que llame a esta funcion, capturando
      * los datos de la gui y enviandolos por parametro
