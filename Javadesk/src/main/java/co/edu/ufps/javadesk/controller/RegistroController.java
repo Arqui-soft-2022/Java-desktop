@@ -44,7 +44,7 @@ public class RegistroController {
             OutputStream os = conn.getOutputStream();
             os.write(json.getBytes("UTF-8"));
             os.close();
-
+            System.out.println(conn.getResponseCode());
             return ""+conn.getResponseCode();
         } catch (IOException e) {
             return (e.getMessage());
