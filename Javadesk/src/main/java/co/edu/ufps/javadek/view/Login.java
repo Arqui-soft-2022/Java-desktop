@@ -1,6 +1,9 @@
 package co.edu.ufps.javadek.view;
 
 import java.awt.Color;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import sun.net.www.http.HttpClient;
 
 public class Login extends javax.swing.JFrame {
@@ -29,9 +32,10 @@ public class Login extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         txtUsuario = new javax.swing.JTextField();
-        txtPassword = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
+        lblMensaje = new javax.swing.JLabel();
+        txtPassword = new javax.swing.JPasswordField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(132, 140, 220));
@@ -73,34 +77,39 @@ public class Login extends javax.swing.JFrame {
         jLabel5.setForeground(new java.awt.Color(0, 51, 255));
         jLabel5.setText("Regístrate");
 
+        txtPassword.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtPasswordActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout panelRound1Layout = new javax.swing.GroupLayout(panelRound1);
         panelRound1.setLayout(panelRound1Layout);
         panelRound1Layout.setHorizontalGroup(
             panelRound1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelRound1Layout.createSequentialGroup()
+                .addGap(53, 53, 53)
+                .addComponent(jLabel2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel5))
+            .addGroup(panelRound1Layout.createSequentialGroup()
+                .addGap(90, 90, 90)
+                .addComponent(jLabel1))
+            .addGroup(panelRound1Layout.createSequentialGroup()
+                .addGap(97, 97, 97)
+                .addComponent(jButton1))
+            .addGroup(panelRound1Layout.createSequentialGroup()
+                .addGap(56, 56, 56)
+                .addComponent(lblMensaje, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(panelRound1Layout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(panelRound1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(panelRound1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(panelRound1Layout.createSequentialGroup()
-                            .addGap(53, 53, 53)
-                            .addComponent(jLabel2)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(jLabel5))
-                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelRound1Layout.createSequentialGroup()
-                            .addContainerGap()
-                            .addGroup(panelRound1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jLabel4)
-                                .addComponent(jLabel3))
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                            .addGroup(panelRound1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(txtUsuario, javax.swing.GroupLayout.DEFAULT_SIZE, 105, Short.MAX_VALUE)
-                                .addComponent(txtPassword))))
-                    .addGroup(panelRound1Layout.createSequentialGroup()
-                        .addGap(98, 98, 98)
-                        .addComponent(jButton1))
-                    .addGroup(panelRound1Layout.createSequentialGroup()
-                        .addGap(90, 90, 90)
-                        .addComponent(jLabel1)))
-                .addContainerGap(69, Short.MAX_VALUE))
+                    .addComponent(jLabel4)
+                    .addComponent(jLabel3))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(panelRound1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(txtUsuario, javax.swing.GroupLayout.DEFAULT_SIZE, 105, Short.MAX_VALUE)
+                    .addComponent(txtPassword)))
         );
         panelRound1Layout.setVerticalGroup(
             panelRound1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -119,14 +128,16 @@ public class Login extends javax.swing.JFrame {
                 .addGroup(panelRound1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
                     .addComponent(txtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 27, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(lblMensaje, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addComponent(jButton1)
-                .addGap(23, 23, 23))
+                .addContainerGap())
         );
 
-        jPanel3.add(panelRound1, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 70, 290, 200));
+        jPanel3.add(panelRound1, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 40, 290, 200));
 
-        getContentPane().add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 510, 360));
+        getContentPane().add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 430, 300));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -137,14 +148,28 @@ public class Login extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         
-        String user, pwd;
-        user = txtUsuario.getText();
-        pwd = txtPassword.getText();
-        System.out.println(user);
-        System.out.println(pwd);
-
-        //Hacer validación 
+        try {
+            String user, pwd;
+            user = txtUsuario.getText();
+            pwd = txtPassword.getText();
+            String json= co.edu.ufps.javadesk.controller.Login.loginUser(user, pwd);
+            
+            
+            
+            System.out.println(user);
+            System.out.println(pwd);
+            
+            //Hacer validación 
+        } catch (IOException ex) {
+            Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (InterruptedException ex) {
+            Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void txtPasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPasswordActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtPasswordActionPerformed
 
     /**
      * @param args the command line arguments
@@ -189,8 +214,9 @@ public class Login extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel3;
+    private javax.swing.JLabel lblMensaje;
     private co.edu.ufps.javadek.view.PanelRound panelRound1;
-    private javax.swing.JTextField txtPassword;
+    private javax.swing.JPasswordField txtPassword;
     private javax.swing.JTextField txtUsuario;
     // End of variables declaration//GEN-END:variables
 }
