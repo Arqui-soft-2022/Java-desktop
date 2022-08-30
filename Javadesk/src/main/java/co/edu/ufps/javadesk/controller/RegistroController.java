@@ -19,9 +19,9 @@ import org.json.JSONObject;
  *
  * @author Usuario
  */
-public class Registro {
+public class RegistroController {
     
-    static String registroUser(String username, String password, String email, String name) throws JsonProcessingException, IOException, InterruptedException {
+    public static String registroUser(String username, String password, String email, String name) throws JsonProcessingException, IOException, InterruptedException {
 
         try {
             String query = "https://codeqr-generate.herokuapp.com/api/auth/register";
@@ -45,13 +45,7 @@ public class Registro {
             os.write(json.getBytes("UTF-8"));
             os.close();
 
-            String respuestaApi = "";
-            Reader in = new BufferedReader(new InputStreamReader(conn.getInputStream(), "UTF-8"));
-            for (int i = in.read(); i != -1; i = in.read()) {
-                respuestaApi += (char) i;
-            }
-
-            return respuestaApi;
+            return ""+conn.getResponseCode();
         } catch (IOException e) {
             return (e.getMessage());
         }
