@@ -18,7 +18,7 @@ public class Login {
      * Porgramar evento con el button para que llame a esta funcion, capturando
      * los datos de la gui y enviandolos por parametro
      */
-    static String loginUser(String user, String password) throws JsonProcessingException, IOException, InterruptedException {
+    public static String loginUser(String user, String password) throws JsonProcessingException, IOException, InterruptedException {
 
         try {
             String query = "https://codeqr-generate.herokuapp.com/api/auth/login";
@@ -37,9 +37,10 @@ public class Login {
             conn.setRequestMethod("POST");
 
             OutputStream os = conn.getOutputStream();
+            //
             os.write(json.getBytes("UTF-8"));
             os.close();
-
+            System.out.println(conn.getResponseCode());
             String respuestaApi = "";
             Reader in = new BufferedReader(new InputStreamReader(conn.getInputStream(), "UTF-8"));
             for (int i = in.read(); i != -1; i = in.read()) {
@@ -48,7 +49,8 @@ public class Login {
 
             return respuestaApi;
         } catch (IOException e) {
-            return (e.getMessage());
+            e.printStackTrace();
+            return "mal";
         }
 
     }
