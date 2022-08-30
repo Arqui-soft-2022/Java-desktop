@@ -40,12 +40,13 @@ public class Login {
             //
             os.write(json.getBytes("UTF-8"));
             os.close();
-            System.out.println(conn.getResponseCode());
-            String respuestaApi = "";
-            Reader in = new BufferedReader(new InputStreamReader(conn.getInputStream(), "UTF-8"));
-            for (int i = in.read(); i != -1; i = in.read()) {
-                respuestaApi += (char) i;
+            String respuestaApi = "Bienvenido";
+            if(conn.getResponseCode() == 404){
+                respuestaApi = "Usuario o contraseña inválidos";
+            }else if (conn.getResponseCode() == 400){
+                respuestaApi = "El usuario NO existe";
             }
+            
 
             return respuestaApi;
         } catch (IOException e) {

@@ -214,7 +214,7 @@ public class Login extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel3;
-    private javax.swing.JLabel lblMensaje;
+    public javax.swing.JLabel lblMensaje;
     private co.edu.ufps.javadek.view.PanelRound panelRound1;
     private javax.swing.JPasswordField txtPassword;
     private javax.swing.JTextField txtUsuario;
