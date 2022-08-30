@@ -1,13 +1,10 @@
 package co.edu.ufps.javadek.view;
 
 import java.awt.Color;
+import sun.net.www.http.HttpClient;
 
-/**
- *
- * @author LENOVO
- */
 public class Login extends javax.swing.JFrame {
-
+            
     public Login() {
         initComponents();
         /**
@@ -142,6 +139,9 @@ public class Login extends javax.swing.JFrame {
         String user, pwd;
         user = txtUsuario.getText();
         pwd = txtPassword.getText();
+        System.out.println(user);
+        System.out.println(pwd);
+
         //Hacer validación 
     }//GEN-LAST:event_jButton1ActionPerformed
 
