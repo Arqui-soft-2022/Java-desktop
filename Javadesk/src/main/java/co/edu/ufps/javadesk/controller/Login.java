@@ -1,16 +1,11 @@
 package co.edu.ufps.javadesk.controller;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStreamReader;
 import java.io.OutputStream;
-import java.io.Reader;
 import java.net.*;
-import java.util.*;
 import org.json.JSONObject;
-import sun.net.www.http.HttpClient;
+
 
 public class Login {
 

@@ -11,8 +11,7 @@ public class Login extends javax.swing.JFrame {
             
     public Login() {
         initComponents();
-        /**
-        Para que se ejecute en el centro */
+        this.setResizable(false);
         this.setLocationRelativeTo(null);
     }
 

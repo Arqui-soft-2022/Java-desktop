@@ -16,6 +16,8 @@ public class Historial2 extends javax.swing.JFrame {
      */
     public Historial2() {
         initComponents();
+        this.setResizable(false);
+        this.setLocationRelativeTo(null);
     }
 
     /**

@@ -21,6 +21,7 @@ public class Registro extends javax.swing.JFrame {
     public Registro() {
         initComponents();
         this.setResizable(false);
+        this.setLocationRelativeTo(null);
     }
 
     private String getStatus(String code){
