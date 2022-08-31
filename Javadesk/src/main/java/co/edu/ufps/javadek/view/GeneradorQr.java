@@ -230,7 +230,7 @@ public class GeneradorQr extends javax.swing.JFrame {
         GenerarQR generar = new GenerarQR();
 
         try {
-            String data = GenerarQR.generarQR("", "1");
+            String data = GenerarQR.generarQR("https://www.youtube.com/", "1");
             System.out.println(data);
             decoder(data.split("data:image/png;base64,")[1], System.getProperty("user.dir") + "\\imagesQR\\image_qr.png");
         } catch (IOException ex) {
