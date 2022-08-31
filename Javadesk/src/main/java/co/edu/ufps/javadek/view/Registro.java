@@ -207,7 +207,7 @@ public class Registro extends javax.swing.JFrame {
             String correo = txtCorreo.getText();
             String contrasena = txtPassword.getText();
             
-            String code = RegistroController.registroUser(usuario, correo, usuario, nombre);
+            String code = RegistroController.registroUser(usuario, contrasena, correo, nombre);
             String status = this.getStatus(code);
             if(status.equals("OK")){
             //va a inicio
