@@ -15,7 +15,10 @@ import javax.swing.ImageIcon;
 import co.edu.ufps.javadesk.controller.GenerarQR;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.nio.file.Files;
+import java.nio.file.StandardCopyOption;
 import java.util.Base64;
+import javax.swing.JFileChooser;
 
 
 /**
@@ -24,6 +27,7 @@ import java.util.Base64;
  */
 public class GeneradorQr extends javax.swing.JFrame {
 
+    private static final String RUTA = System.getProperty("user.dir") + "\\imagesQR\\image_qr.png";
     /**
      * Creates new form GeneradorQr
      */
@@ -38,7 +42,7 @@ public class GeneradorQr extends javax.swing.JFrame {
             byte[] imageByteArray = Base64.getDecoder().decode(base64Image);
             imageOutFile.write(imageByteArray);
 
-            File file = new File(System.getProperty("user.dir") + "\\imagesQR\\image_qr.png");        
+            File file = new File(RUTA);        
             BufferedImage bufferedImage = ImageIO.read(file);
             ImageIcon imageIcon = new ImageIcon(bufferedImage);
 
@@ -221,7 +225,7 @@ public class GeneradorQr extends javax.swing.JFrame {
         try {
             String data = GenerarQR.generarQR("https://www.youtube.com/", "1");
             System.out.println(data);
-            decoder(data.split("data:image/png;base64,")[1], System.getProperty("user.dir") + "\\imagesQR\\image_qr.png");
+            decoder(data.split("data:image/png;base64,")[1], RUTA);
         } catch (IOException ex) {
             Logger.getLogger(GeneradorQr.class.getName()).log(Level.SEVERE, null, ex);
         } catch (InterruptedException ex) {
@@ -232,10 +236,20 @@ public class GeneradorQr extends javax.swing.JFrame {
     }//GEN-LAST:event_GenerarBut1ActionPerformed
 
     private void ExportarBut2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ExportarBut2ActionPerformed
-        // TODO add your handling code here:
-        
-        
-
+        try {
+            String filePath = "";
+            JFileChooser chooser = new JFileChooser();
+            chooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
+            if (chooser.showOpenDialog(this) == JFileChooser.APPROVE_OPTION) {
+                filePath = chooser.getSelectedFile().getAbsolutePath();
+            }
+            
+            File file = new File(filePath+"/export_qr.png");
+            
+            Files.copy(new File(RUTA).toPath(),file.toPath(), StandardCopyOption.REPLACE_EXISTING);
+        } catch (IOException ex) {
+            Logger.getLogger(GeneradorQr.class.getName()).log(Level.SEVERE, null, ex);
+        }
 
     }//GEN-LAST:event_ExportarBut2ActionPerformed
 
