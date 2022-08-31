@@ -20,6 +20,13 @@ import java.util.logging.Logger;
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
+import co.edu.ufps.javadesk.controller.GenerarQR;
+import java.io.ByteArrayInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.InputStream;
+import java.util.Base64;
+import sun.misc.BASE64Decoder;
 
 /**
  *
@@ -32,6 +39,25 @@ public class GeneradorQr extends javax.swing.JFrame {
      */
     public GeneradorQr() {
         initComponents();
+    }
+
+    public void decoder(String base64Image, String pathFile) {
+
+        try ( FileOutputStream imageOutFile = new FileOutputStream(pathFile)) {
+            //Convertir B64 a Imagen
+            byte[] imageByteArray = Base64.getDecoder().decode(base64Image);
+            imageOutFile.write(imageByteArray);
+
+            File file = new File(System.getProperty("user.dir") + "\\imagesQR\\image_qr.png");        
+            BufferedImage bufferedImage = ImageIO.read(file);
+            ImageIcon imageIcon = new ImageIcon(bufferedImage);
+
+            this.labelQr.setIcon(imageIcon);
+        } catch (FileNotFoundException e) {
+            System.out.println("Imagen no encontrada" + e);
+        } catch (IOException ioe) {
+            System.out.println("Error" + ioe);
+        }
     }
 
     @SuppressWarnings("unchecked")
@@ -104,6 +130,11 @@ public class GeneradorQr extends javax.swing.JFrame {
         ExportarBut2.setText("Exportar QR");
         ExportarBut2.setBorder(javax.swing.BorderFactory.createEmptyBorder(10, 10, 10, 10));
         ExportarBut2.setBorderPainted(false);
+        ExportarBut2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ExportarBut2ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout panelRound2Layout = new javax.swing.GroupLayout(panelRound2);
         panelRound2.setLayout(panelRound2Layout);
@@ -137,12 +168,12 @@ public class GeneradorQr extends javax.swing.JFrame {
                 .addGroup(panelRound2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(panelRound2Layout.createSequentialGroup()
                         .addGap(18, 18, 18)
-                        .addGroup(panelRound2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(sitiWeb2)
-                            .addComponent(sitiWeb1))
+                        .addGroup(panelRound2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(sitiWeb1, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(sitiWeb2))
                         .addGap(58, 58, 58)
                         .addComponent(textUrl, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 37, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 47, Short.MAX_VALUE)
                         .addComponent(GenerarBut1, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(36, 36, 36))
                     .addGroup(panelRound2Layout.createSequentialGroup()
@@ -153,7 +184,7 @@ public class GeneradorQr extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        jPanel1.add(panelRound2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 150, 700, 260));
+        jPanel1.add(panelRound2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 150, 700, 270));
 
         jPanel4.setBackground(new java.awt.Color(175, 179, 210));
 
@@ -196,60 +227,26 @@ public class GeneradorQr extends javax.swing.JFrame {
 
     private void GenerarBut1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_GenerarBut1ActionPerformed
         // TODO add your handling code here:
-     int size = 1000;
-        String FileType = "png";
+        GenerarQR generar = new GenerarQR();
 
-        String codigo = textUrl.getText().trim();
-        
-        // Ruta de la imagen
-        String filePath = "";
-        JFileChooser chooser = new JFileChooser();
-        chooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
-        if (chooser.showOpenDialog(this) == JFileChooser.APPROVE_OPTION) {
-            filePath = chooser.getSelectedFile().getAbsolutePath();
-        }
-
-       
-        UUID uuid = UUID.randomUUID();
-        String randonName = uuid.toString();
-
-        // Generar codigo Qr 
-        QRCodeWriter qrcode = new QRCodeWriter();
         try {
-            BitMatrix matrix = qrcode.encode(codigo, BarcodeFormat.QR_CODE, size, size);
-            File f = new File(filePath + "/" + randonName + "." + FileType);
-            int matrixWidth = matrix.getWidth();
-            BufferedImage image = new BufferedImage(matrixWidth, matrixWidth, BufferedImage.TYPE_INT_RGB);
-            image.createGraphics();
-
-            Graphics2D gd = (Graphics2D) image.getGraphics();
-            gd.setColor(Color.WHITE); 
-            gd.fillRect(0, 0, size, size);
-            gd.setColor(Color.black); 
-
-            for (int b = 0; b < matrixWidth; b++) {
-                for (int j = 0; j < matrixWidth; j++) {
-                    if (matrix.get(b, j)) {
-                        gd.fillRect(b, j, 1, 1);
-                    }
-                }
-            }
-            
-            // Mostrar imagen Qr en el label
-            
-            ImageIO.write(image, FileType, f);
-            Image mImagen = new ImageIcon(filePath + "/" + randonName + "." + FileType).getImage();
-            ImageIcon mIcono = new ImageIcon(mImagen.getScaledInstance(labelQr.getWidth(), labelQr.getHeight(), 0));
-            labelQr.setIcon(mIcono);
-            
-        } catch (WriterException ex) {
-            Logger.getLogger(GeneradorQr.class.getName()).log(Level.SEVERE, null, ex);
+            String data = GenerarQR.generarQR("https://www.facebook.com/", "1");
+            System.out.println(data);
+            decoder(data.split("data:image/png;base64,")[1], System.getProperty("user.dir") + "\\imagesQR\\image_qr.png");
         } catch (IOException ex) {
             Logger.getLogger(GeneradorQr.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (InterruptedException ex) {
+            Logger.getLogger(GeneradorQr.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
-        
+
+
     }//GEN-LAST:event_GenerarBut1ActionPerformed
+
+    private void ExportarBut2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ExportarBut2ActionPerformed
+        // TODO add your handling code here:
+
+
+    }//GEN-LAST:event_ExportarBut2ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -287,8 +284,8 @@ public class GeneradorQr extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton ExportarBut2;
-    private javax.swing.JButton GenerarBut1;
+    public javax.swing.JButton ExportarBut2;
+    public javax.swing.JButton GenerarBut1;
     private javax.swing.JLabel icono;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;

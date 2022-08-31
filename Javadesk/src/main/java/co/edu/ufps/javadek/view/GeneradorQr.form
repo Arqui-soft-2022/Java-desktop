@@ -73,7 +73,7 @@
           </Properties>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-              <AbsoluteConstraints x="30" y="150" width="700" height="260"/>
+              <AbsoluteConstraints x="30" y="150" width="700" height="270"/>
             </Constraint>
           </Constraints>
 
@@ -115,13 +115,13 @@
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" alignment="0" attributes="0">
                               <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="3" attributes="0">
-                                  <Component id="sitiWeb2" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
                                   <Component id="sitiWeb1" alignment="1" min="-2" max="-2" attributes="0"/>
+                                  <Component id="sitiWeb2" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace min="-2" pref="58" max="-2" attributes="0"/>
                               <Component id="textUrl" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace pref="37" max="32767" attributes="0"/>
+                              <EmptySpace pref="47" max="32767" attributes="0"/>
                               <Component id="GenerarBut1" min="-2" pref="27" max="-2" attributes="0"/>
                               <EmptySpace min="-2" pref="36" max="-2" attributes="0"/>
                           </Group>
@@ -171,6 +171,9 @@
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="GenerarBut1ActionPerformed"/>
               </Events>
+              <AuxValues>
+                <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
+              </AuxValues>
             </Component>
             <Component class="javax.swing.JTextField" name="textUrl">
               <Properties>
@@ -213,6 +216,12 @@
                 </Property>
                 <Property name="borderPainted" type="boolean" value="false"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="ExportarBut2ActionPerformed"/>
+              </Events>
+              <AuxValues>
+                <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
+              </AuxValues>
             </Component>
             <Component class="javax.swing.JLabel" name="labelQr">
             </Component>

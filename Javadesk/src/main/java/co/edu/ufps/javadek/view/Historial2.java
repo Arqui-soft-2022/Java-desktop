@@ -39,11 +39,9 @@ public class Historial2 extends javax.swing.JFrame {
         userNombre = new javax.swing.JLabel();
         icono = new javax.swing.JLabel();
 
-        url.setBackground(new java.awt.Color(255, 255, 255));
         url.setFont(new java.awt.Font("Bell MT", 0, 18)); // NOI18N
         url.setText("https://github.com/Arqui-soft-2022/Java-desktop/tree/master/Javadesk");
         url.setBorder(null);
-        url.setCaretColor(new java.awt.Color(0, 0, 0));
         url.setSelectedTextColor(new java.awt.Color(0, 0, 0));
         url.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -70,7 +68,6 @@ public class Historial2 extends javax.swing.JFrame {
 
         sitiWeb1.setBackground(new java.awt.Color(0, 0, 0));
         sitiWeb1.setFont(new java.awt.Font("Bell MT", 1, 18)); // NOI18N
-        sitiWeb1.setForeground(new java.awt.Color(0, 0, 0));
         sitiWeb1.setText("Sitio web (URL)");
 
         ExportarBut1.setBackground(new java.awt.Color(105, 115, 184));
@@ -79,6 +76,11 @@ public class Historial2 extends javax.swing.JFrame {
         ExportarBut1.setText("Exportar QR");
         ExportarBut1.setBorder(javax.swing.BorderFactory.createEmptyBorder(10, 10, 10, 10));
         ExportarBut1.setBorderPainted(false);
+        ExportarBut1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ExportarBut1ActionPerformed(evt);
+            }
+        });
 
         jLabel1.setFont(new java.awt.Font("Bell MT", 0, 18)); // NOI18N
         jLabel1.setText("https://github.com/Arqui-soft-2022/Java-desktop/tree/master/Javadesk");
@@ -115,7 +117,6 @@ public class Historial2 extends javax.swing.JFrame {
 
         titulo.setBackground(new java.awt.Color(255, 255, 255));
         titulo.setFont(new java.awt.Font("Bell MT", 1, 24)); // NOI18N
-        titulo.setForeground(new java.awt.Color(0, 0, 0));
         titulo.setText("Códigos QR generados");
 
         jPanel2.setBackground(new java.awt.Color(175, 179, 210));
@@ -189,6 +190,10 @@ public class Historial2 extends javax.swing.JFrame {
         // TODO add your handling code here:
 
     }//GEN-LAST:event_urlActionPerformed
+
+    private void ExportarBut1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ExportarBut1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_ExportarBut1ActionPerformed
 
     /**
      * @param args the command line arguments

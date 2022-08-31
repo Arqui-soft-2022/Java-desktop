@@ -2,6 +2,8 @@
 package co.edu.ufps.javadesk.controller;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -11,16 +13,18 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import org.json.JSONObject;
 
+import co.edu.ufps.javadek.view.GeneradorQr;
+import org.json.JSONArray;
 /**
  *
  * @author Usuario
  */
-public class GenerarQR {
+public class GenerarQR implements ActionListener {
     
-    static String generarQR(String url, String user) throws JsonProcessingException, IOException, InterruptedException {
+   public static String generarQR(String url, String user) throws JsonProcessingException, IOException, InterruptedException {
 
         try {
-            String query = "https://codeqr-generate.herokuapp.com/api/code/";
+            String query = "https://codeqr-generate2.herokuapp.com/api/code/";
             JSONObject obj = new JSONObject();
             obj.put("url", url);
             obj.put("user", user);
@@ -45,16 +49,24 @@ public class GenerarQR {
                 respuestaApi += (char) i;
             }
 
-            return respuestaApi;
+            JSONArray array = new JSONArray("["+respuestaApi+"]"); 
+            
+            String dataQR= array.getJSONObject(0).getJSONObject("qr_code").get("url_code").toString();
+            
+            return dataQR;
         } catch (IOException e) {
             return (e.getMessage());
         }
 
     }
 
-    public static void main(String[] args) throws IOException, InterruptedException {
-        // test de login user 
-        System.out.println(generarQR("https://es-la.facebook.com/", "123456"));
+   
+            
+   
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
     
 }
