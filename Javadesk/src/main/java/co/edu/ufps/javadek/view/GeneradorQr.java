@@ -28,11 +28,21 @@ import javax.swing.JFileChooser;
 public class GeneradorQr extends javax.swing.JFrame {
 
     private static final String RUTA = System.getProperty("user.dir") + "\\imagesQR\\image_qr.png";
+    
+    private Integer user ;
     /**
      * Creates new form GeneradorQr
      */
-    public GeneradorQr() {
+   public GeneradorQr() {
+       initComponents();
+       
+       
+    }
+   
+   
+    public GeneradorQr(Integer user) {
         initComponents();
+        this.user = user ;
     }
 
     public void decoder(String base64Image, String pathFile) {
@@ -223,7 +233,7 @@ public class GeneradorQr extends javax.swing.JFrame {
         GenerarQR generar = new GenerarQR();
 
         try {
-            String data = GenerarQR.generarQR("https://www.youtube.com/", "1");
+            String data = GenerarQR.generarQR(this.textUrl.getText(),"" );
             System.out.println(data);
             decoder(data.split("data:image/png;base64,")[1], RUTA);
         } catch (IOException ex) {
@@ -283,7 +293,7 @@ public class GeneradorQr extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new GeneradorQr().setVisible(true);
+               new GeneradorQr().setVisible(true);
             }
         });
     }
