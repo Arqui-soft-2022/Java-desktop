@@ -97,6 +97,10 @@
                               <EmptySpace min="-2" pref="36" max="-2" attributes="0"/>
                               <Component id="textUrl" min="-2" pref="300" max="-2" attributes="0"/>
                           </Group>
+                          <Group type="102" alignment="0" attributes="0">
+                              <EmptySpace min="-2" pref="153" max="-2" attributes="0"/>
+                              <Component id="jLabelConnection" min="-2" max="-2" attributes="0"/>
+                          </Group>
                       </Group>
                       <EmptySpace pref="70" max="32767" attributes="0"/>
                       <Component id="labelQr" min="-2" pref="259" max="-2" attributes="0"/>
@@ -118,9 +122,11 @@
                               <Component id="sitiWeb2" min="-2" max="-2" attributes="0"/>
                               <EmptySpace min="-2" pref="58" max="-2" attributes="0"/>
                               <Component id="textUrl" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace pref="117" max="32767" attributes="0"/>
+                              <EmptySpace pref="134" max="32767" attributes="0"/>
                               <Component id="GenerarBut1" min="-2" pref="27" max="-2" attributes="0"/>
-                              <EmptySpace min="-2" pref="36" max="-2" attributes="0"/>
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                              <Component id="jLabelConnection" min="-2" pref="0" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="2" max="-2" attributes="0"/>
                           </Group>
                           <Group type="102" alignment="0" attributes="0">
                               <Component id="sitiWeb1" min="-2" max="-2" attributes="0"/>
@@ -222,6 +228,11 @@
               </AuxValues>
             </Component>
             <Component class="javax.swing.JLabel" name="labelQr">
+            </Component>
+            <Component class="javax.swing.JLabel" name="jLabelConnection">
+              <AuxValues>
+                <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
+              </AuxValues>
             </Component>
           </SubComponents>
         </Container>

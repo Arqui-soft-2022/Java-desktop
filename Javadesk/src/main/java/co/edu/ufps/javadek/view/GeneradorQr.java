@@ -35,8 +35,7 @@ public class GeneradorQr extends javax.swing.JFrame {
      */
    public GeneradorQr() {
        initComponents();
-       
-       
+  
     }
    
    
@@ -77,6 +76,7 @@ public class GeneradorQr extends javax.swing.JFrame {
         sitiWeb1 = new javax.swing.JLabel();
         ExportarBut2 = new javax.swing.JButton();
         labelQr = new javax.swing.JLabel();
+        jLabelConnection = new javax.swing.JLabel();
         jPanel4 = new javax.swing.JPanel();
         userNombre = new javax.swing.JLabel();
         icono = new javax.swing.JLabel();
@@ -157,7 +157,10 @@ public class GeneradorQr extends javax.swing.JFrame {
                         .addComponent(GenerarBut1))
                     .addGroup(panelRound2Layout.createSequentialGroup()
                         .addGap(36, 36, 36)
-                        .addComponent(textUrl, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(textUrl, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(panelRound2Layout.createSequentialGroup()
+                        .addGap(153, 153, 153)
+                        .addComponent(jLabelConnection)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 70, Short.MAX_VALUE)
                 .addComponent(labelQr, javax.swing.GroupLayout.PREFERRED_SIZE, 259, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(35, 35, 35))
@@ -175,9 +178,11 @@ public class GeneradorQr extends javax.swing.JFrame {
                         .addComponent(sitiWeb2)
                         .addGap(58, 58, 58)
                         .addComponent(textUrl, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 117, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 134, Short.MAX_VALUE)
                         .addComponent(GenerarBut1, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(36, 36, 36))
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabelConnection, javax.swing.GroupLayout.PREFERRED_SIZE, 0, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(2, 2, 2))
                     .addGroup(panelRound2Layout.createSequentialGroup()
                         .addComponent(sitiWeb1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -233,7 +238,7 @@ public class GeneradorQr extends javax.swing.JFrame {
         GenerarQR generar = new GenerarQR();
 
         try {
-            String data = GenerarQR.generarQR(this.textUrl.getText(),"" );
+            String data = GenerarQR.generarQR(this.textUrl.getText(),this.user );
             System.out.println(data);
             decoder(data.split("data:image/png;base64,")[1], RUTA);
         } catch (IOException ex) {
@@ -303,6 +308,7 @@ public class GeneradorQr extends javax.swing.JFrame {
     public javax.swing.JButton GenerarBut1;
     private javax.swing.JLabel icono;
     private javax.swing.JLabel jLabel1;
+    public javax.swing.JLabel jLabelConnection;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JLabel labelQr;

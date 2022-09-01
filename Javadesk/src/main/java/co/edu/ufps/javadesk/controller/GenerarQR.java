@@ -21,7 +21,7 @@ import org.json.JSONArray;
  */
 public class GenerarQR implements ActionListener {
     
-   public static String generarQR(String url, String user) throws JsonProcessingException, IOException, InterruptedException {
+   public static String generarQR(String url, Integer user) throws JsonProcessingException, IOException, InterruptedException {
 
         try {
             String query = "https://codeqr-generate.herokuapp.com/api/code/";
@@ -62,7 +62,7 @@ public class GenerarQR implements ActionListener {
 
     public static void main(String[] args) throws IOException, InterruptedException {
         // test de login user 
-        System.out.println(generarQR("", "1"));
+        System.out.println(generarQR("", 1));
     }
             
    

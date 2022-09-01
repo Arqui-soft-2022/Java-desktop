@@ -4,7 +4,7 @@ import java.awt.Color;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import sun.net.www.http.HttpClient;
+
 
 public class Login extends javax.swing.JFrame {
     
@@ -13,6 +13,18 @@ public class Login extends javax.swing.JFrame {
         initComponents();
         this.setResizable(false);
         this.setLocationRelativeTo(null);
+    }
+    
+    private String getStatus(String code){
+    
+         System.out.println(code);
+         
+        switch(code.split(";")[0]){
+           
+            case "200":return "OK";
+            case "400":return "El usuario ya existe";
+            default: return "Error al hacer la petición";
+        }
     }
 
     /**
@@ -152,9 +164,19 @@ public class Login extends javax.swing.JFrame {
             String user, pwd;
             user = txtUsuario.getText();
             pwd = txtPassword.getText();
-            String json= co.edu.ufps.javadesk.controller.Login.loginUser(user, pwd);
+            String json = co.edu.ufps.javadesk.controller.Login.loginUser(user, pwd);
+            String status = this.getStatus(json);
             
-            
+            if(status.equals("OK")){
+            //va a GenerarQr
+            System.out.println(json);
+            GeneradorQr gqr = new GeneradorQr(Integer.parseInt(json.split(";")[1]));
+            gqr.setVisible(true);
+            gqr.jLabelConnection.setText("Registro Exitoso");
+            }else{
+                lblMensaje.setText(status);
+                System.out.println("pailas");
+            }
             
             System.out.println(user);
             System.out.println(pwd);

@@ -1,9 +1,13 @@
 package co.edu.ufps.javadesk.controller;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.io.OutputStream;
+import java.io.Reader;
 import java.net.*;
+import org.json.JSONArray;
 import org.json.JSONObject;
 
 
@@ -35,15 +39,22 @@ public class Login {
             //
             os.write(json.getBytes("UTF-8"));
             os.close();
-            String respuestaApi = "Bienvenido";
-            if(conn.getResponseCode() == 404){
-                respuestaApi = "Usuario o contraseña inválidos";
-            }else if (conn.getResponseCode() == 400){
-                respuestaApi = "El usuario NO existe";
+            String respuestaApi = "";
+            Reader in = new BufferedReader(new InputStreamReader(conn.getInputStream(), "UTF-8"));
+            for (int i = in.read(); i != -1; i = in.read()) {
+                respuestaApi += (char) i;
             }
+            Integer idUsuario = 0;
             
+            if(conn.getResponseCode() == 200){
+                JSONObject jsonObject1 = new JSONObject(respuestaApi);            
+                Object usuarioJson = jsonObject1.getJSONObject("usuario");             
+                JSONObject jsonObject2 = new JSONObject(usuarioJson.toString());             
+                idUsuario = jsonObject2.getInt("id_usuario");
+            }
 
-            return respuestaApi;
+            return conn.getResponseCode()+";"+idUsuario;
+            
         } catch (IOException e) {
             e.printStackTrace();
             return "mal";
